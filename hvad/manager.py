@@ -367,7 +367,7 @@ class TranslationQueryset(QuerySet):
         return super(TranslationQueryset, self).latest(field_name)
 
     def in_bulk(self, id_list):
-        raise NotImplementedError()
+        return dict((m.pk, m) for m in self.filter(id__in = id_list))
 
     def delete(self):
         qs = self._get_shared_query_set()
